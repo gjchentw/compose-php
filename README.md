@@ -127,11 +127,9 @@ Copy files into the app container (when needed):
 docker cp localfile app:/app/path
 ```
 
-Tip: mounting the host project into the container (`- ./:/app`) means file permissions matter.
-If you run into permission issues for `storage`/`bootstrap/cache`, use the `laravel-setup` job or `chmod` to set writable permissions:
+Tip: mounting the host project into the container (`- ./app:/app`) means file permissions matter.
+If you run into permission issues for `storage`/`bootstrap/cache`, use the `laravel-setup` job to set writable permissions:
 
 ```bash
 docker compose run --rm laravel-setup
-# or on host
-chmod -R 777 storage bootstrap/cache
 ```
