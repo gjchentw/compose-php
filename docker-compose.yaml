@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  laravel-setup:
+    build:
+      context: .
+    working_dir: /app      
+    command: >
+      sh -c "
+        HOME=/tmp composer.phar install &&
+        mkdir -p storage/logs storage/framework/views storage/framework/sessions storage/framework/cache &&
+        chmod 777 storage/logs storage/framework/views storage/framework/sessions storage/framework/cache &&
+        echo APP_KEY= > .env &&
+        php artisan key:generate &&
+        php artisan config:clear &&
+        rm -f storage/logs/*.log
+      "
+    container_name: app-setup
+    env_file:
+      - .env.compose
+    volumes:
+      - ./:/app
+    restart: "no"
+
+  app:
+    build:
+      context: .
+    container_name: app
+    env_file:
+      - .env.compose
+    volumes:
+      - ./:/app
+    ports:
+      - "80:80"
+    restart: "always"
+    logging:
+      options:
+        max-size: "10m"

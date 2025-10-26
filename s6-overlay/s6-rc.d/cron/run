@@ -1,0 +1,3 @@
+#!/usr/bin/execlineb -P
+# foreground 執行 cron
+exec /usr/sbin/cron -f
