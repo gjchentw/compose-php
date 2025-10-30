@@ -18,7 +18,6 @@ RUN	set -eux; \
 	apt-get update -y && apt-get dist-upgrade -y && \
 	apt-get install --no-install-recommends --no-install-suggests -y \
 	  bash bash-completion sudo openssl ca-certificates apt-transport-https \
-#	  cron postfix \
 	  gnupg dirmngr curl wget xz-utils jq git net-tools dnsutils procps vim.tiny && \
 	apt-get -y autoremove && apt-get -y autoclean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \

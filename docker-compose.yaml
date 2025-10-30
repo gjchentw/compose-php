@@ -31,7 +31,7 @@ services:
     volumes:
       - ./app:/app
     ports:
-      - "80:80"
+      - "8000:80"
     restart: "always"
     logging:
       options:
